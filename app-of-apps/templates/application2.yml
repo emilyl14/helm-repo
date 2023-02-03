@@ -15,7 +15,7 @@ spec:
     helm:
       parameters: 
       - name: serviceAccount.name
-        value: application2
+        value: "application2"
   syncPolicy:
     automated:
       prune: true
