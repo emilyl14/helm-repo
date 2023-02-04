@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: app-of-apps
+    path: app-of-apps1
     repoURL: https://github.com/emilyl14/helm-repo.git
     targetRevision: HEAD
   syncPolicy:
