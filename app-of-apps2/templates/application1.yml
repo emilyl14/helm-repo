@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: application1-2
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      parameters:
+        - name: serviceAccount.name
+          value: application1-2
+        - name: Service.name
+          value: application1-2
+        - name: Ingress.name
+          value: application1-2
+        - name: Deployment.name
+          value: application1-2
+    path: first-chart
+    repoURL: https://github.com/emilyl14/helm-repo.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
