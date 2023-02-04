@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: application1-3
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      name: hpa
+      value: application1-3
+    path: first-chart
+    repoURL: https://github.com/emilyl14/helm-repo.git
+    targetRevision: HEAD
+    helm:
+      parameters: 
+      - name: serviceAccount.name
+        value: "application1"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
