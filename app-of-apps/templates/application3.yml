@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: application3
-  namespace: emily
+  namespace: argocd
 spec:
   destination:
     namespace: emily
