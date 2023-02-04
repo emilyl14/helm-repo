@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: application3
+  namespace: emily
+spec:
+  destination:
+    namespace: emily
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: first-chart
+    repoURL: https://github.com/emilyl14/helm-repo.git
+    targetRevision: HEAD
+    helm:
+      parameters: 
+      - name: serviceAccount.name
+        value: "application3"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
